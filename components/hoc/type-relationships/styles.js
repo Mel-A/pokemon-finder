@@ -17,9 +17,3 @@ export const Button = styled.button`
 export const Container = styled.div`
   width: 270px;
 `
-export const TypeList = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-`

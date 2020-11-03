@@ -1,4 +1,6 @@
-export { default as SearchBox } from './search-box'
 export { default as Card } from './card'
-export { default as TypeRelationships } from './type-relationships'
+export { default as Details } from './details'
+export { default as MainContainer } from './hoc/main-container'
+export { default as SearchBox } from './search-box'
+export { default as TypeRelationships } from './hoc/type-relationships'
 export { default as TypeIcon } from './type-icon'

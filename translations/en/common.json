@@ -9,6 +9,7 @@
   "relations": {
     "show-items": "Show strengths and weakness",
     "show-weakness": "This pokemon is weak against:",
-    "show-strengths": "This pokemon is strong against:"
+    "show-strengths": "This pokemon is strong against:",
+    "show-inmunity": "This pokemon is inmune against:"
   }
 }

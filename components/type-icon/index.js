@@ -1,5 +1,6 @@
 import React from 'react'
 import { Type, Icon } from './styles'
+import PropTypes from 'prop-types'
 
 const TypeIcon = ({ name }) => {
   return (
@@ -8,6 +9,10 @@ const TypeIcon = ({ name }) => {
       {name}
     </Type>
   )
+}
+
+TypeIcon.propTypes = {
+  name: PropTypes.string.isRequired
 }
 
 export default TypeIcon

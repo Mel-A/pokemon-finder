@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, Image, ImageBackground, Title, TypesSection } from './styles'
 import { TypeIcon } from '..'
+import PropTypes from 'prop-types'
 
 const Card = ({ name, image, types }) => {
   return (
@@ -16,6 +17,12 @@ const Card = ({ name, image, types }) => {
       </TypesSection>
     </Container>
   )
+}
+
+Card.propTypes = {
+  name: PropTypes.string.isRequired,
+  image: PropTypes.object.isRequired,
+  types: PropTypes.array.isRequired
 }
 
 export default Card
