@@ -3,52 +3,24 @@ import { Container, List, Title } from './styles'
 import { TypeIcon } from '..'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
-
-const multiplier = {
-  doubleDamageFrom: 2,
-  noDamageFrom: 0,
-  halfDamageFrom: 0.5
-}
-
-const damageBreakPoint = {
-  weak: value => value > 1,
-  strong: value => value < 1 && value > 0,
-  inmune: value => value == 0
-}
-
-
-const applyMultiplication = values => {
-  const finalValues = {}
-
-  values.forEach(({ type, multi })  => 
-  finalValues[type] = finalValues.hasOwnProperty(type) ? finalValues[type] * multi : multi)
-
-  return finalValues
-}
+import { applyMultiplication, damageBreakPoint, formatArray, returnValues } from '../../utils/multiplier'
 
 const setRelationshipValues = (rel, damageReference) => {
+  const damage = damageBreakPoint[damageReference]
+
   const multiplierValues = []
   rel && rel.forEach(({ types: { relation } }) => {
-    Object.keys(relation).forEach(key => 
-      relation && relation[key].forEach(item => {
-        multiplierValues.push({multi: multiplier[key], type: item.name })
-      }))
+    formatArray(relation, multiplierValues)
   })
 
-  const finalValues = applyMultiplication(multiplierValues)
-
-  return  Object.keys(finalValues).filter(key => 
-    damageReference(finalValues[key])).map(name =>
-      ({ multi: finalValues[name], type: name })
-  )
+  return  returnValues(applyMultiplication(multiplierValues), damage)
 }
 
 const Details = ({ title, relations, damageReference }) => {
   const { t } = useTranslation('common')
-  const damage = damageBreakPoint[damageReference]
-  const types = setRelationshipValues(relations, damage)
+  const types = setRelationshipValues(relations, damageReference)
 
-  if(!types.length)
+  if(types && !types.length)
     return null 
 
   return (
